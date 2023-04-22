@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.tab {
+  height: 200px;
+  width: 200px;
+}
+.tab__btns {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+}
+.tab__btn {
+  width: 25%;
+}
+.tab__btn.active {
+  background-color: aqua;
+}
+.tab__text {
+  display: none;
+}
+.tab__text.active {
+  display: block;
+  background-color: aqua;
+}

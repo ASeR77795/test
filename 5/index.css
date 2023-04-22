@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  box-sizing: border-box;
+}
+.container {
+  width: 300px;
+}
+.calculator {
+  border: 1px solid black;
+  margin: 20px;
+}
+.window {
+  margin: 10px;
+  height: 20px;
+  border: 1px solid black;
+}
+.num {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.num div {
+  margin: 10px;
+  border: 1px solid black;
+  text-align: center;
+}
