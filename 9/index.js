@@ -1,2 +1,8 @@
-const list = fetch("https://api.sampleapis.com/countries/countries");
-list.then((data) => data.json()).then((countries) => console.log(countries));
+let list = [];
+const listPromise = fetch("https://api.sampleapis.com/countries/countries");
+listPromise
+  .then((data) => data.json())
+  .then((countries) => {
+    list.push(countries);
+    console.log(list);
+  });
