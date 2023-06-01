@@ -63,13 +63,26 @@
 // console.log(counter.increment());
 // console.log(counter.reset());
 // console.log(counter.decrement());
-var createHelloWorld = function () {
-  return function (...args) {
-    return "Hello World";
-  };
-};
+// var createHelloWorld = function () {
+//   return function (...args) {
+//     return "Hello World";
+//   };
+// };
 
 /**
  * const f = createHelloWorld();
  * f(); // "Hello World"
+ */
+// var once = function(fn) {
+//     return function(...args){
+
+//     }
+// };
+
+/**
+ * let fn = (a,b,c) => (a + b + c)
+ * let onceFn = once(fn)
+ *
+ * onceFn(1,2,3); // 6
+ * onceFn(2,3,6); // returns undefined without calling fn
  */
