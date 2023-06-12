@@ -2,6 +2,8 @@ export class Shop {
   categoriesWarapper = document.querySelector(".categories");
   goodsWrapper = document.querySelector(".goods");
   detailsWrapper = document.querySelector(".details");
+  cartWrapper = document.querySelector("pre");
+  cart = {};
   constructor(config) {
     this.config = config;
   }
@@ -27,8 +29,19 @@ export class Shop {
     });
     this.detailsWrapper.addEventListener("click", ({ target }) => {
       if (target.matches("button")) {
+        const { id } = target.dataset;
+        const good = this.config.goods.find((item) => item.id === +id);
+        if (this.cart[id]) {
+          this.cart[id].count += 1;
+        } else {
+          this.cart[id] = {
+            count: 1,
+          };
+        }
+        this.renderCart();
         this.clearDetails();
         this.clearGoods();
+        console.log(this.cart);
       }
     });
   }
@@ -63,9 +76,10 @@ export class Shop {
       this.goodsWrapper.append(goodElem);
     });
   }
-  renderDetails({ imgSrc, price, title, description }) {
+  renderDetails({ imgSrc, price, title, description, id }) {
     this.clearDetails();
     const wrapper = document.createElement("div");
+    wrapper.dataset.id = id;
     wrapper.innerHTML = `<img
     src="${imgSrc}"
     alt=""
@@ -75,7 +89,17 @@ export class Shop {
     ${description}
   </p>
   <h3>${price} UAH</h3>
-  <button class="btn btn-primary w-100">Buy now</button>`;
+  <button data-id='${id}' class="btn btn-primary w-100">Buy now</button>`;
     this.detailsWrapper.append(wrapper);
+  }
+  renderCart() {
+    let result = "";
+    const sum = Object.entries(this.cart).reduce((acc, [id, { count }]) => {
+      const good = this.config.goods.find((item) => item.id === +id);
+      result = `${result}\n${good.title}   ${count}    ${good.price}`;
+      return acc + +good.price * count;
+    }, 0);
+    result = `${result}\nTotal: ${sum}`;
+    this.cartWrapper.innerText = result;
   }
 }
